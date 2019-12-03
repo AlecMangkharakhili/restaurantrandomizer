@@ -1,0 +1,1 @@
+GOOGLE_API_KEY = 'AIzaSyCWCcBeN8mYfL6s8f_tn3VOtm5GhE1_M2w'
