@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpRequest
 from django.http import HttpResponse
 import json
 from . import searchfunctions
@@ -13,9 +13,7 @@ def findfood(req):
     
     
 def ping_request(req):
-    print("Ping request received from:", req.META.get("REMOTE_ADDR"))
-    html = "<html><body>The server has been pinged.</body></html>"
-    return HttpResponse(html)
+    return JsonResponse({'response': 'body'})
     
 def findfood_old(req):
     req_params = json.loads(req.body.decode('utf-8'))
