@@ -3,6 +3,10 @@ from django.http import JsonResponse, HttpRequest
 from django.http import HttpResponse
 import json
 from . import searchfunctions
+from . import env
+import googlemaps
+
+gmaps = googlemaps.Client(key=env.GOOGLE_API_KEY)
 
 # Create your views here.
 
@@ -30,6 +34,8 @@ def findfood_old(req):
 
     restaurant = searchfunctions.find_food(coord['location'], dist, search_params)
 
-    json_res = json.dumps(restaurant)
+    place_detailed = gmaps.place(gmaps, restaurant[id])
+
+    json_res = json.dumps(place_detailed)
 
     return JsonResponse({'res': json_res})

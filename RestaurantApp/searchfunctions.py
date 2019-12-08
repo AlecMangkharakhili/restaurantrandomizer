@@ -60,7 +60,7 @@ def sub_search(coordinates, dist, params):
 
     for result in search_res['results']:
         ret_list.append(
-            dict(name=result['name'], address=result['vicinity'], type=result['types']))
+            dict(name=result['name'], address=result['vicinity'], type=result['types'], id=result['place_id']))
 
     if next_token is not None:
         time.sleep(2)
@@ -71,7 +71,7 @@ def sub_search(coordinates, dist, params):
 
         for result in search_res['results']:
             ret_list.append(
-                dict(name=result['name'], address=result['vicinity'], type=result['types']))
+                dict(name=result['name'], address=result['vicinity'], type=result['types'], id=result['place_id']))
 
     if next_token is not None:
         time.sleep(2)
@@ -79,7 +79,7 @@ def sub_search(coordinates, dist, params):
 
         for result in search_res['results']:
             ret_list.append(
-                dict(name=result['name'], address=result['vicinity'], type=result['types']))
+                dict(name=result['name'], address=result['vicinity'], type=result['types'], id=result['place_id']))
 
     return ret_list
 
