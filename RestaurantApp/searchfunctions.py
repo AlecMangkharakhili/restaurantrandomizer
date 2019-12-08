@@ -51,7 +51,7 @@ def sub_search(coordinates, dist, params):
 
     search_res = gmaps.places_nearby(location=coordinates, type='restaurant', radius=dist,
                                      min_price=params['min_price'],
-                                     max_price=params['max_price'], keyword=params['keyword'], open_now=True)
+                                     max_price=params['max_price'], keyword=params['cuisines'], open_now=True)
 
     if 'next_page_token' in search_res:
         next_token = search_res['next_page_token']
@@ -88,29 +88,29 @@ def find_food(coordinates, dist, params):
 
     formatted_params = dict()
 
-    if params['min_price'] == '':
+    if params['minPrice'] == '':
         formatted_params['min_price'] = None
 
     else:
-        formatted_params['min_price'] = params['min_price']
+        formatted_params['min_price'] = params['minPrice']
 
-    if params['max_price'] == '':
+    if params['maxPrice'] == '':
         formatted_params['max_price'] = None
 
     else:
-        formatted_params['max_price'] = params['max_price']
+        formatted_params['max_price'] = params['maxPrice']
 
-    if params['min_price'] == '':
+    if params['minPrice'] == '':
         formatted_params['min_price'] = None
 
     else:
-        formatted_params['min_price'] = params['min_price']
+        formatted_params['min_price'] = params['minPrice']
 
-    if not params['keyword']:
+    if not params['cuisine']:
         formatted_params['keyword'] = None
 
     else:
-        formatted_params['keyword'] = params['keyword']
+        formatted_params['keyword'] = params['cuisine']
 
     # List of queried restaurants
     results = full_search(coordinates, dist, formatted_params)
