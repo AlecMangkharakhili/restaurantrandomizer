@@ -49,7 +49,7 @@ def sub_search(coordinates, dist, params):
 
     search_res = gmaps.places_nearby(location=coordinates, type='restaurant', radius=dist,
                                         min_price=int(params['min_price'], max_price=int(params['max_price'],
-                                        keyword=params['cuisines'], open_now=True)
+                                        keyword=params['cuisines'], open_now=True)))
 
     if 'next_page_token' in search_res:
         next_token = search_res['next_page_token']
