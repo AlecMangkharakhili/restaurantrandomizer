@@ -26,7 +26,6 @@ def calculate_offset(coordinates, dist, bearing):
 
     return new_coord
 
-
 def full_search(coordinates, dist, params):
     # full_search performs all 8 radial searches
     full_search_res = []
@@ -36,7 +35,6 @@ def full_search(coordinates, dist, params):
         full_search_res.extend(sub_search(search_coord, dist / 2, params))
 
     return full_search_res
-
 
 def sub_search(coordinates, dist, params):
     # search performs a single radial search
@@ -50,8 +48,8 @@ def sub_search(coordinates, dist, params):
     ret_list = []
 
     search_res = gmaps.places_nearby(location=coordinates, type='restaurant', radius=dist,
-                                     min_price=params['min_price'],
-                                     max_price=params['max_price'], keyword=params['cuisines'], open_now=True)
+                                        min_price=int(params['min_price'], max_price=int(params['max_price'],
+                                        keyword=params['cuisines'], open_now=True)
 
     if 'next_page_token' in search_res:
         next_token = search_res['next_page_token']

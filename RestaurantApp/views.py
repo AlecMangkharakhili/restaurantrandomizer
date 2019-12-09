@@ -11,13 +11,18 @@ gmaps = googlemaps.Client(key=env.GOOGLE_API_KEY)
 # Create your views here.
 
 def findfood(req):
-    params = HttpRequest.content_params #this is a dictionary
+    params = req.GET #this is a dictionary
+    print("Successfully read paramaters for request")
     #expected dictionary keys: cuisine, minPrice, maxPrice, radius, lon, lat, minRating, maxRating
-    coordinates = dict(lng=params['lon'], lat=params['lat']) #changed name to match exising funtion find_food
-    params.remove('lon')
-    params.remove('lat')
-    restaurant = searchfunctions.full_search(coordinates, params['radius'], params) #this should return a JSON
-    return JsonResponse(restaurant);
+    coordinates = dict(lng=float(params['lon']), lat=float(params['lat'])) #changed name to match exising funtion find_food
+    d = params['radius']
+    distance = d[0:d.find("mile")]
+    print("Calling full_search")
+    restaurant = searchfunctions.full_search(coordinates, int(distance), params) #this should return a JSON
+    print("Getting detailed info")
+    place_detailed = gmaps.place(gmaps, restaurant[id])
+    json_res = json.dumps(place_detailed)
+    return JsonResponse(json_res);
     
 def ping_request(req):
     return JsonResponse({'response': 'body'})
